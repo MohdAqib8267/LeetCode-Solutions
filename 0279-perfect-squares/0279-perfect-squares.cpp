@@ -2,7 +2,7 @@ class Solution {
 public:
     int solve(int i,int sum,vector<int>& arr,int n,vector<vector<int>>& dp){
         if(i>=n or sum<0){
-            return 1000;
+            return INT_MAX-1000;
         }
         if(dp[i][sum]!=-1){
             return dp[i][sum];
