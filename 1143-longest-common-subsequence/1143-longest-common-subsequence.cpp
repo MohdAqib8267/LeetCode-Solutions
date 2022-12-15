@@ -15,11 +15,31 @@ public:
         }
         return dp[i][j];
     }
-    int longestCommonSubsequence(string text1, string text2) {
-        int n=text1.size();
-        int m=text2.size();
+    int longestCommonSubsequence(string s1, string s2) {
+        // int n=s1.size();
+        // int m=s2.size();
         
-        vector<vector<int>>dp(n,vector<int>(m,-1));
-        return LCS(0,0,text1,text2,n,m,dp);
+        //Memoization
+        // vector<vector<int>>dp(n,vector<int>(m,-1));
+        // return LCS(0,0,text1,text2,n,m,dp);
+        
+        //Tabulation
+         int m = s1.size(), n = s2.size();
+        vector<vector<int>> dp(m+1, vector<int> (n+1,0));
+    for(int i=1; i<m+1; i++)
+    {
+        for(int j=1; j<n+1; j++)
+        {
+            if(s1[i-1] == s2[j-1])
+            {
+                dp[i][j] = 1 + dp[i-1][j-1];
+            }
+            else
+            {
+                dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
+            }
+        }
+    }
+    return dp[m][n];
     }
 };
