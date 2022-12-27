@@ -14,17 +14,29 @@ public:
         if(coins[i]<=amount){
              take = 1+solve(i,amount-coins[i],coins,dp);
         }
-       
         int not_take=solve(i+1,amount,coins,dp);
         return dp[i][amount]=min(take,not_take);
     }
     int coinChange(vector<int>& coins, int amount) {
         int n=coins.size();
-        vector<vector<int>>dp(n+1,vector<int>(amount+1,-1));
-        int ans= solve(0,amount,coins,dp);
-        if(ans==100000){
-            return -1;
+       // vector<vector<int>>dp(n+1,vector<int>(amount+1,-1));
+        // int ans= solve(0,amount,coins,dp);
+        // if(ans==100000){
+        //     return -1;
+        // }
+        // return ans;
+        
+        //Tabulation
+        vector<int>dp(amount+1,INT_MAX);
+        dp[0]=0;
+        for(int i=1;i<=amount;i++){
+            for(int j=0;j<n;j++){
+                if(i>=coins[j] and dp[i-coins[j]]!=INT_MAX){
+                    dp[i]=min(1+dp[i-coins[j]],dp[i]);
+                }
+            }
         }
-        return ans;
+        return dp[amount] != INT_MAX ? dp[amount] : -1;
+        
     }
 };
