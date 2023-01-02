@@ -20,21 +20,21 @@ public:
      
        while(!pq.empty()){
            ll dis = pq.top().first;
-           ll node = pq.top().second;
+           ll u = pq.top().second;
            pq.pop();
            
-           for(auto it: adj[node]){
-               ll adjNode = it.first;
-               ll edW = it.second;
+           for(auto it: adj[u]){
+               ll v = it.first;
+               ll w = it.second;
                //this is the first time I am coming
                //with the short distance
-               if(dis + edW < dist[adjNode]){
-                   dist[adjNode] = dis + edW;
-                   pq.push({dis + edW,adjNode});
-                   ways[adjNode] = ways[node];
+               if(dis + w < dist[v]){
+                   dist[v] = dis + w;
+                   pq.push({dis + w,v});
+                   ways[v] = ways[u];
                }
-               else if(dis +edW == dist[adjNode]){
-                   ways[adjNode] = (ways[adjNode] + ways[node])%MOD;
+               else if(dis +w == dist[v]){
+                   ways[v] = (ways[v] + ways[u])%MOD;
                }
            }
        }
