@@ -32,7 +32,7 @@ public:
         }
         int m=freq.size();
         int count=0;
-        vector<int>dp(100005,-1);
+        vector<int>dp(100005,-1); //tasks length (imp line)
         for(int i=0;i<m;i++){
             if(freq[i]==1){
                 return -1;
