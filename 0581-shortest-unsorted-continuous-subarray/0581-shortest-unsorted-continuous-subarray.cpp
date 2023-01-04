@@ -1,5 +1,7 @@
 class Solution {
 public:
+    // //idea----
+    // This solution uses two stacks to keep track of the indices of the elements that need to be sorted. It first iterates through the array from left to right, and uses a stack to find the starting index of the subarray by keeping track of the indices of the elements that are out of order. It then iterates through the array from right to left, and uses another stack to find the ending index of the subarray in the same way. Finally, it returns the length of the subarray by subtracting the starting index from the ending index and adding 1.
     int findUnsortedSubarray(vector<int>& nums) {
         int n=nums.size();
         stack<pair<int,int>>st;
